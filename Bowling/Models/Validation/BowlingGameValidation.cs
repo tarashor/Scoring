@@ -22,25 +22,38 @@ namespace Bowling.Models.Validation
                     for (int i = 0; i < game.frames.Count; i++)
                     {
                         Frame frame = game.frames[i];
-                        if (i == MaxFrames - 1)
+                        bool isLastOfFull = i == MaxFrames - 1;
+                        bool isStrike = frame.first == Pins;
+                        bool isSpare = (frame.first + frame.second) == Pins;
+
+                        if (isLastOfFull && isStrike)
                         {
-                            if (frame.first == Pins) 
-                            {
-                                //Strike
-                            }
-                            else if ((frame.first + frame.second) == Pins) 
-                            { 
-                                //Spare
-                            }
+                            isValid = isValid && (frame.second <= Pins) && (frame.third <= Pins) && (frame.second >= 0) && (frame.third == 0);
+                        }
+                        else if (isLastOfFull && isSpare)
+                        {
+                            isValid = isValid && (frame.first >= 0) && (frame.second >= 0) && (frame.third >= 0) && (frame.third <= Pins);
+                        }
+                        else
+                        {
+                            isValid = isValid && ((frame.first + frame.second) <= Pins) && (frame.first >= 0) && (frame.second >= 0) && (frame.third == 0);
                         }
 
-                        bool isFrameValid = ((frame.first + frame.second) <= Pins) && (frame.first >= 0) && (frame.second >= 0) && (frame.third == 0);
-
+                        if (!isValid) 
+                        {
+                            setErrorMessage(i, string.Empty);
+                            break;
+                        }
                     }
                 }
             }
             return isValid;
 
+        }
+
+        private void setErrorMessage(int frameIndex, string detailMessage) 
+        {
+            ErrorMessage = string.Format("Frame #{0} doesn't contain valid data", frameIndex + 1);
         }
     }
 }

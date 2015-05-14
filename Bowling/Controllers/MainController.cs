@@ -25,7 +25,7 @@ namespace Bowling.Controllers
         }
 
         [HttpPost]
-        public JsonResult Count(Game game)//IList<Frame> frames)
+        public JsonResult Count(Game game)
         {
             string message = string.Empty;
             if (ModelState.IsValid)
@@ -33,9 +33,15 @@ namespace Bowling.Controllers
                 int totalScore = scoreService.GetScore(game.frames);
                 return Json(new { score = totalScore });
             }
-            else 
+            else
             {
-                message = "Request is not valid";
+                foreach (ModelState modelState in ViewData.ModelState.Values)
+                {
+                    foreach (ModelError error in modelState.Errors)
+                    {
+                        message += error.ErrorMessage;
+                    }
+                }
             }
 
             HttpContext.Response.StatusCode = (int)HttpStatusCode.NotFound;
