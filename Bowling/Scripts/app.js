@@ -44,7 +44,7 @@ app.controller('ScoreController', ['$http', function ($http) {
     };
 
     score.hasSecondRoll = function (frame) {
-        return !score.isStrike(frame) || (score.frames.indexOf(frame) < score.MAX_FRAMES - 1);
+        return !score.isStrike(frame) || (score.frames.indexOf(frame) === (score.MAX_FRAMES - 1));
     };
 
     score.canRollThird = function () {

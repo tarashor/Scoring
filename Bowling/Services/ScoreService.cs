@@ -23,12 +23,12 @@ namespace Bowling.Services
                     bool isPreLast = i == frames.Count - 2;
                     
                     int nextRoll = isLast ? (isGameFinished ? frames[i].second : -1) : frames[i + 1].first;
+
                     int nextNextRoll = isLast ? (isGameFinished ? frames[i].third : -1) 
                         : (!frames[i + 1].IsStrike() ? frames[i + 1].second
                             : !isPreLast 
                                 ? frames[i + 2].first
                                 : (isGameFinished ? frames[i + 1].second : -1));
-
                     
                     if ((nextRoll > -1) && (nextNextRoll > -1)){
                         totalScore += 10 + nextRoll + nextNextRoll;
@@ -48,5 +48,6 @@ namespace Bowling.Services
             }
             return totalScore;
         }
+
     }
 }

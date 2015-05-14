@@ -25,12 +25,12 @@ namespace Bowling.Controllers
         }
 
         [HttpPost]
-        public JsonResult Count(IList<Frame> frames)
+        public JsonResult Count(Game game)//IList<Frame> frames)
         {
             string message = string.Empty;
             if (ModelState.IsValid)
             {
-                int totalScore = scoreService.GetScore(frames);
+                int totalScore = scoreService.GetScore(game.frames);
                 return Json(new { score = totalScore });
             }
             else 

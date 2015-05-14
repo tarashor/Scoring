@@ -26,10 +26,10 @@ namespace Bowling.Models
         [Range(0, 10)]
         public int first { set; get; }
 
-        [Required]
         [Range(0, 10)]
         public int second { set; get; }
 
+        [Range(0, 10)]
         public int third { set; get; }
 
         public bool IsSpare()
