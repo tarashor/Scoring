@@ -19,6 +19,7 @@ namespace Bowling.Models.Validation
             {
                 if (game.frames.Count <= MaxFrames)
                 {
+                    isValid = true;
                     for (int i = 0; i < game.frames.Count; i++)
                     {
                         Frame frame = game.frames[i];
