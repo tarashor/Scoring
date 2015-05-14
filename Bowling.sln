@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bowling", "Bowling\Bowling.csproj", "{30C3863E-A97E-4B8D-B2D2-33A12490E428}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BowlingTest", "BowlingTest\BowlingTest.csproj", "{E1E2B7AC-CC95-492C-AEA7-32ABF9B04DAF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,6 +15,10 @@ Global
 		{30C3863E-A97E-4B8D-B2D2-33A12490E428}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{30C3863E-A97E-4B8D-B2D2-33A12490E428}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{30C3863E-A97E-4B8D-B2D2-33A12490E428}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E1E2B7AC-CC95-492C-AEA7-32ABF9B04DAF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E1E2B7AC-CC95-492C-AEA7-32ABF9B04DAF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E1E2B7AC-CC95-492C-AEA7-32ABF9B04DAF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E1E2B7AC-CC95-492C-AEA7-32ABF9B04DAF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -115,6 +115,7 @@
     </Compile>
     <Compile Include="Models\Frame.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\ScoreService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
