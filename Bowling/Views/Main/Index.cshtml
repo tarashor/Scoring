@@ -9,9 +9,9 @@
             <label for="first">First</label>
             <input type="number" min="0" max="10" class="form-control" id="first" ng-model="scoreCtrl.newFrame.first" required>
         </div>
-        <div class="form-group" ng-hide="scoreCtrl.isStrike(scoreCtrl.newFrame)">
+        <div class="form-group" ng-show="scoreCtrl.canRollSecond()">
             <label for="second">Second</label>
-            <input type="number" min="0" max="10" class="form-control" id="second" ng-model="scoreCtrl.newFrame.second" required>
+            <input type="number" min="0" max="10" class="form-control" id="second" ng-model="scoreCtrl.newFrame.second">
         </div>
         <div class="form-group" ng-show="scoreCtrl.canRollThird()">
             <label for="second">Third</label>
@@ -23,19 +23,19 @@
         <table class="table table-condensed">
             <thead>
                 <tr>
-                    <th>#</th>
-                    <th>First</th>
-                    <th>Second</th>
-                    <th>Additional</th>
+                    <th>Frame #</th>
+                    <th>First Roll</th>
+                    <th>Second Roll</th>
+                    <th>Additional Roll</th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="frame in scoreCtrl.match.frames">
+                <tr ng-repeat="frame in scoreCtrl.frames">
                     <td>{{$index + 1}}</td>
                     <td>{{frame.first}}</td>
-                    <td>{{frame.second}}</td>
-                    <td><span ng-show="">{{frame.third}}</span></td>
+                    <td><span ng-show="scoreCtrl.hasSecondRoll(frame)">{{frame.second}}</span></td>
+                    <td><span ng-show="scoreCtrl.hasThirdRoll(frame)">{{frame.third}}</span></td>
                     <td></td>
                 </tr>
                 <tr>
@@ -47,6 +47,7 @@
             </tbody>
         </table>
     </div>
+    <h1 style="color:red" ng-show="scoreCtrl.gameFinished()" class="center-block">Game is finished! Your score is {{scoreCtrl.total}}</h1>
 </div>
 
 
