@@ -27,12 +27,19 @@ namespace Bowling.Controllers
         [HttpPost]
         public JsonResult Count(IList<Frame> frames)
         {
-            if (ModelState.IsValid) {
+            string message = string.Empty;
+            if (ModelState.IsValid)
+            {
                 int totalScore = scoreService.GetScore(frames);
                 return Json(new { score = totalScore });
             }
+            else 
+            {
+                message = "Request is not valid";
+            }
+
             HttpContext.Response.StatusCode = (int)HttpStatusCode.NotFound;
-            return Json(new {});
+            return Json(new {message = message});
         }
 	}
 }
