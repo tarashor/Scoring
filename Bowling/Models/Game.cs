@@ -6,7 +6,7 @@ using System.Web;
 
 namespace Bowling.Models
 {
-    [BowlingGameValidation(Pins = 10, MaxFrames = 10)]
+    [BowlingGameValidation]
     public class Game
     {
         public Game() {

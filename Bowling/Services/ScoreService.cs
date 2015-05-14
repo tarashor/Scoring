@@ -8,11 +8,9 @@ namespace Bowling.Services
 {
     public class ScoreService
     {
-        public const int MAXCOUNT = 10;
-
         public int GetScore(IList<Frame> frames) 
         {
-            bool isGameFinished = frames.Count == MAXCOUNT;
+            bool isGameFinished = frames.Count == GameSettings.MAX_FRAMES_COUNT;
             int totalScore = 0;
             for (int i = 0; i < frames.Count; i++) 
             {

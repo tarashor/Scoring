@@ -34,3 +34,21 @@ C:\Users\Taras\Диск Google\Bowling\Bowling\bin\System.Web.Mvc.xml
 C:\Users\Taras\Диск Google\Bowling\Bowling\obj\Debug\Bowling.dll
 C:\Users\Taras\Диск Google\Bowling\Bowling\obj\Debug\Bowling.pdb
 C:\Users\Taras\Диск Google\Bowling\Bowling\obj\Debug\Bowling.csprojResolveAssemblyReference.cache
+D:\_PROJECTS\Scoring\Bowling\bin\Bowling.dll
+D:\_PROJECTS\Scoring\Bowling\bin\Bowling.pdb
+D:\_PROJECTS\Scoring\Bowling\bin\Microsoft.Web.Infrastructure.dll
+D:\_PROJECTS\Scoring\Bowling\bin\System.Web.Helpers.dll
+D:\_PROJECTS\Scoring\Bowling\bin\System.Web.Mvc.dll
+D:\_PROJECTS\Scoring\Bowling\bin\System.Web.Razor.dll
+D:\_PROJECTS\Scoring\Bowling\bin\System.Web.Webpages.Deployment.dll
+D:\_PROJECTS\Scoring\Bowling\bin\System.Web.Webpages.dll
+D:\_PROJECTS\Scoring\Bowling\bin\System.Web.Webpages.Razor.dll
+D:\_PROJECTS\Scoring\Bowling\bin\System.Web.Razor.xml
+D:\_PROJECTS\Scoring\Bowling\bin\System.Web.Webpages.xml
+D:\_PROJECTS\Scoring\Bowling\bin\System.Web.Webpages.Deployment.xml
+D:\_PROJECTS\Scoring\Bowling\bin\System.Web.Webpages.Razor.xml
+D:\_PROJECTS\Scoring\Bowling\bin\System.Web.Helpers.xml
+D:\_PROJECTS\Scoring\Bowling\bin\System.Web.Mvc.xml
+D:\_PROJECTS\Scoring\Bowling\obj\Debug\Bowling.csprojResolveAssemblyReference.cache
+D:\_PROJECTS\Scoring\Bowling\obj\Debug\Bowling.dll
+D:\_PROJECTS\Scoring\Bowling\obj\Debug\Bowling.pdb

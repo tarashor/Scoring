@@ -8,53 +8,72 @@ namespace Bowling.Models.Validation
 {
     public class BowlingGameValidation : ValidationAttribute
     {
-        public int Pins { get; set; }
-        public int MaxFrames { get; set; }
-
         public override bool IsValid(object value)
         {
-            bool isValid = false;
             Game game = value as Game;
-            if (game != null)
+
+            if (game == null)
             {
-                if (game.frames.Count <= MaxFrames)
+                ErrorMessage = "Game is empty";
+                return false;
+            }
+            if (game.frames == null)
+            {
+                ErrorMessage = "Frames has invalid format";
+                return false;
+            }
+
+            if (game.frames.Count > GameSettings.MAX_FRAMES_COUNT)
+            {
+                ErrorMessage = string.Format("Number of frames should be less then or equal {0}", GameSettings.MAX_FRAMES_COUNT);
+                return false;
+            }
+
+
+            for (int i = 0; i < game.frames.Count; i++)
+            {
+                Frame frame = game.frames[i];
+
+                if (!isFrameRollsInRange(frame)) 
                 {
-                    isValid = true;
-                    for (int i = 0; i < game.frames.Count; i++)
-                    {
-                        Frame frame = game.frames[i];
-                        bool isLastOfFull = i == MaxFrames - 1;
-                        bool isStrike = frame.first == Pins;
-                        bool isSpare = (frame.first + frame.second) == Pins;
+                    setErrorMessage(i, string.Format("The pins knocked in each roll should be between 0 and {0}", GameSettings.PINS_COUNT));
+                    return false;
+                }
 
-                        if (isLastOfFull && isStrike)
-                        {
-                            isValid = isValid && (frame.second <= Pins) && (frame.third <= Pins) && (frame.second >= 0) && (frame.third == 0);
-                        }
-                        else if (isLastOfFull && isSpare)
-                        {
-                            isValid = isValid && (frame.first >= 0) && (frame.second >= 0) && (frame.third >= 0) && (frame.third <= Pins);
-                        }
-                        else
-                        {
-                            isValid = isValid && ((frame.first + frame.second) <= Pins) && (frame.first >= 0) && (frame.second >= 0) && (frame.third == 0);
-                        }
+                bool isLastOfFull = i == GameSettings.MAX_FRAMES_COUNT - 1;
 
-                        if (!isValid) 
-                        {
-                            setErrorMessage(i, string.Empty);
-                            break;
-                        }
-                    }
+                if (!isFrameRollsValid(frame, isLastOfFull))
+                {
+                    setErrorMessage(i, string.Format("The pins knocked in frame should not be more than {0}", GameSettings.PINS_COUNT));
+                    return false;
                 }
             }
-            return isValid;
 
+            return true;
+
+        }
+
+        private bool isFrameRollsValid(Frame frame, bool isLastOfFull)
+        {
+            bool isValid = false;
+
+            if (!isLastOfFull||(!frame.IsSpare() && !frame.IsStrike()))
+            {
+                isValid = ((frame.first + frame.second) <= GameSettings.PINS_COUNT) && (frame.third == 0);
+            }
+            return isValid;
+        }
+
+        private bool isFrameRollsInRange(Frame frame)
+        {
+            return (frame.first >= 0) && (frame.first <= GameSettings.PINS_COUNT)
+                && (frame.second >= 0) && (frame.second <= GameSettings.PINS_COUNT)
+                && (frame.third >= 0) && (frame.third <= GameSettings.PINS_COUNT);
         }
 
         private void setErrorMessage(int frameIndex, string detailMessage) 
         {
-            ErrorMessage = string.Format("Frame #{0} doesn't contain valid data", frameIndex + 1);
+            ErrorMessage = string.Format("Frame #{0} doesn't contain valid data.", frameIndex + 1);
         }
     }
 }

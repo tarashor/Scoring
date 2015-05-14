@@ -27,7 +27,7 @@ app.controller('ScoreController', ['$http', function ($http) {
                   alert(data.message);
               });
         } else {
-            alert("Input values is not correct!!");
+            alert("Verify the values ");
         }
     };
 

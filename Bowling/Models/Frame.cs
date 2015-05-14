@@ -23,23 +23,23 @@ namespace Bowling.Models
         }
 
         [Required]
-        [Range(0, 10)]
+        //[Range(0, GameSettings.PINS_COUNT)]
         public int first { set; get; }
 
-        [Range(0, 10)]
+        //[Range(0, GameSettings.PINS_COUNT)]
         public int second { set; get; }
 
-        [Range(0, 10)]
+        //[Range(0, GameSettings.PINS_COUNT)]
         public int third { set; get; }
 
         public bool IsSpare()
         {
-            return (!IsStrike()) && (first + second == 10);
+            return (!IsStrike()) && (first + second == GameSettings.PINS_COUNT);
         }
 
         public bool IsStrike()
         {
-            return first == 10;
+            return first == GameSettings.PINS_COUNT;
         }
     }
 }
