@@ -1,0 +1,36 @@
+D:\Projects\OWN\Bowling\Bowling\bin\Bowling.dll
+D:\Projects\OWN\Bowling\Bowling\bin\Bowling.pdb
+D:\Projects\OWN\Bowling\Bowling\bin\Microsoft.Web.Infrastructure.dll
+D:\Projects\OWN\Bowling\Bowling\bin\System.Web.Helpers.dll
+D:\Projects\OWN\Bowling\Bowling\bin\System.Web.Mvc.dll
+D:\Projects\OWN\Bowling\Bowling\bin\System.Web.Razor.dll
+D:\Projects\OWN\Bowling\Bowling\bin\System.Web.Webpages.Deployment.dll
+D:\Projects\OWN\Bowling\Bowling\bin\System.Web.Webpages.dll
+D:\Projects\OWN\Bowling\Bowling\bin\System.Web.Webpages.Razor.dll
+D:\Projects\OWN\Bowling\Bowling\bin\System.Web.Razor.xml
+D:\Projects\OWN\Bowling\Bowling\bin\System.Web.Webpages.xml
+D:\Projects\OWN\Bowling\Bowling\bin\System.Web.Webpages.Deployment.xml
+D:\Projects\OWN\Bowling\Bowling\bin\System.Web.Webpages.Razor.xml
+D:\Projects\OWN\Bowling\Bowling\bin\System.Web.Helpers.xml
+D:\Projects\OWN\Bowling\Bowling\bin\System.Web.Mvc.xml
+D:\Projects\OWN\Bowling\Bowling\obj\Debug\Bowling.csprojResolveAssemblyReference.cache
+D:\Projects\OWN\Bowling\Bowling\obj\Debug\Bowling.dll
+D:\Projects\OWN\Bowling\Bowling\obj\Debug\Bowling.pdb
+C:\Users\Taras\Диск Google\Bowling\Bowling\bin\Bowling.dll
+C:\Users\Taras\Диск Google\Bowling\Bowling\bin\Bowling.pdb
+C:\Users\Taras\Диск Google\Bowling\Bowling\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\Taras\Диск Google\Bowling\Bowling\bin\System.Web.Helpers.dll
+C:\Users\Taras\Диск Google\Bowling\Bowling\bin\System.Web.Mvc.dll
+C:\Users\Taras\Диск Google\Bowling\Bowling\bin\System.Web.Razor.dll
+C:\Users\Taras\Диск Google\Bowling\Bowling\bin\System.Web.Webpages.Deployment.dll
+C:\Users\Taras\Диск Google\Bowling\Bowling\bin\System.Web.Webpages.dll
+C:\Users\Taras\Диск Google\Bowling\Bowling\bin\System.Web.Webpages.Razor.dll
+C:\Users\Taras\Диск Google\Bowling\Bowling\bin\System.Web.Razor.xml
+C:\Users\Taras\Диск Google\Bowling\Bowling\bin\System.Web.Webpages.xml
+C:\Users\Taras\Диск Google\Bowling\Bowling\bin\System.Web.Webpages.Deployment.xml
+C:\Users\Taras\Диск Google\Bowling\Bowling\bin\System.Web.Webpages.Razor.xml
+C:\Users\Taras\Диск Google\Bowling\Bowling\bin\System.Web.Helpers.xml
+C:\Users\Taras\Диск Google\Bowling\Bowling\bin\System.Web.Mvc.xml
+C:\Users\Taras\Диск Google\Bowling\Bowling\obj\Debug\Bowling.dll
+C:\Users\Taras\Диск Google\Bowling\Bowling\obj\Debug\Bowling.pdb
+C:\Users\Taras\Диск Google\Bowling\Bowling\obj\Debug\Bowling.csprojResolveAssemblyReference.cache
