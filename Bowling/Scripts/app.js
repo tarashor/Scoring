@@ -70,7 +70,8 @@ app.controller('ScoreController', ['$http', function ($http) {
             return { first: score.newFrame.first, second: score.newFrame.second };
     };
 
-    //it is for this requirement "When a resulting score is returned it should be displayed somewhere on the current page along with the result for each round played. "
+    //It is for this requirement "When a resulting score is returned it should be displayed somewhere on the current page along with the result for each round played. "
+    //As I understand it.
     score.scoreOfFrame = function (frame) {
         var res = '';
         if (score.hasThirdRoll(frame)) {
@@ -106,7 +107,7 @@ app.controller('ScoreController', ['$http', function ($http) {
     };
 
     score.validateNewFrame = function () {
-        var isValid = (score.newFrame.first >= 0) && (score.newFrame.first <= score.PINS_IN_FRAME) && (score.newFrame.first >= 0) && (score.newFrame.second <= score.PINS_IN_FRAME)&&(score.newFrame.second>= 0) && (score.newFrame.third<= score.PINS_IN_FRAME);
+        var isValid = (score.newFrame.first >= 0) && (score.newFrame.first <= score.PINS_IN_FRAME) && (score.newFrame.second >= 0) && (score.newFrame.second <= score.PINS_IN_FRAME)&&(score.newFrame.third>= 0) && (score.newFrame.third<= score.PINS_IN_FRAME);
         if (!score.canRollThird()) {
             isValid = isValid && (score.newFrame.first + score.newFrame.second <= score.PINS_IN_FRAME) && (score.newFrame.third === 0);
         }

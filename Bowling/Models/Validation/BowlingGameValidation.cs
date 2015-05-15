@@ -71,9 +71,9 @@ namespace Bowling.Models.Validation
                 && (frame.third >= 0) && (frame.third <= GameSettings.PINS_COUNT);
         }
 
-        private void setErrorMessage(int frameIndex, string detailMessage) 
+        private void setErrorMessage(int frameIndex, string detailedMessage) 
         {
-            ErrorMessage = string.Format("Frame #{0} doesn't contain valid data.", frameIndex + 1);
+            ErrorMessage = string.Format("Frame #{0} doesn't contain valid data.", frameIndex + 1) + detailedMessage;
         }
     }
 }

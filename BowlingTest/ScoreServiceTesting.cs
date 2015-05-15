@@ -17,14 +17,14 @@ namespace BowlingTest
             scoreService = new ScoreService();
         }
 
-        IList<Frame> getEqualFrames(int N, int f, int s)
+        Game getEqualFrames(int N, int f, int s)
         {
-            List<Frame> frames = new List<Frame>();
+            Game game = new Game();
             for (int i = 0; i < N; i++)
             {
-                frames.Add(new Frame(f, s));
+                game.frames.Add(new Frame(f, s));
             }
-            return frames;
+            return game;
         }
 
         [TestMethod]
@@ -52,11 +52,11 @@ namespace BowlingTest
             Assert.AreEqual(expected, actualScore);
         }
 
-        IList<Frame> getSpare1(int N, int f, int s, int spareIndex)
+        Game getSpare1(int N, int f, int s, int spareIndex)
         {
-            IList<Frame> frames = getEqualFrames(N, f, s);
-            frames[spareIndex].first = 10 - s;
-            return frames;
+            Game game = getEqualFrames(N, f, s);
+            game.frames[spareIndex].first = 10 - s;
+            return game;
         }
 
         [TestMethod]
@@ -68,8 +68,8 @@ namespace BowlingTest
 
             int expected = (FULL_FRAMES_COUNT - 1) * (first + second) + 10 + first;
 
-            IList<Frame> frames = getSpare1(FULL_FRAMES_COUNT, first, second, spareIndex);
-            int actualScore = scoreService.GetScore(frames);
+            Game game = getSpare1(FULL_FRAMES_COUNT, first, second, spareIndex);
+            int actualScore = scoreService.GetScore(game);
 
             Assert.AreEqual(expected, actualScore);
         }
@@ -84,17 +84,17 @@ namespace BowlingTest
 
             int expected = (N - 1) * (first + second);
 
-            IList<Frame> frames = getSpare1(N, first, second, spareIndex);
-            int actualScore = scoreService.GetScore(frames);
+            Game game = getSpare1(N, first, second, spareIndex);
+            int actualScore = scoreService.GetScore(game);
 
             Assert.AreEqual(expected, actualScore);
         }
 
-        IList<Frame> getSpareLastFull(int f, int s, int t)
+        Game getSpareLastFull(int f, int s, int t)
         {
-            IList<Frame> frames = getSpare1(FULL_FRAMES_COUNT, f, s, FULL_FRAMES_COUNT - 1);
-            frames[FULL_FRAMES_COUNT - 1].third = t;
-            return frames;
+            Game game = getSpare1(FULL_FRAMES_COUNT, f, s, FULL_FRAMES_COUNT - 1);
+            game.frames[FULL_FRAMES_COUNT - 1].third = t;
+            return game;
         }
 
         [TestMethod]
@@ -104,21 +104,21 @@ namespace BowlingTest
             int second = 3;
             int third = 5;
 
-            IList<Frame> frames = getSpareLastFull(first, second, third);
+            Game game = getSpareLastFull(first, second, third);
 
             int expected = (FULL_FRAMES_COUNT -1) * (first + second) + 10 + third;
 
-            int actualScore = scoreService.GetScore(frames);
+            int actualScore = scoreService.GetScore(game);
 
             Assert.AreEqual(expected, actualScore);
         }
 
-        IList<Frame> getSpare2(int N, int f, int s, int spareIndex)
+        Game getSpare2(int N, int f, int s, int spareIndex)
         {
-            IList<Frame> frames = getEqualFrames(N, f, s);
-            frames[spareIndex].first = 10 - s;
-            frames[spareIndex+1].first = 10 - s;
-            return frames;
+            Game game = getEqualFrames(N, f, s);
+            game.frames[spareIndex].first = 10 - s;
+            game.frames[spareIndex+1].first = 10 - s;
+            return game;
         }
 
         
@@ -132,8 +132,8 @@ namespace BowlingTest
 
             int expected = (FULL_FRAMES_COUNT - 2) * (first + second) + 10 + first + 10 + (10 - second);
 
-            IList<Frame> frames = getSpare2(FULL_FRAMES_COUNT, first, second, spareIndex);
-            int actualScore = scoreService.GetScore(frames);
+            Game game = getSpare2(FULL_FRAMES_COUNT, first, second, spareIndex);
+            int actualScore = scoreService.GetScore(game);
 
             Assert.AreEqual(expected, actualScore);
         }
@@ -148,17 +148,17 @@ namespace BowlingTest
 
             int expected = (N - 2) * (first + second) + 10 + (10-second);
 
-            IList<Frame> frames = getSpare2(N, first, second, spareIndex);
-            int actualScore = scoreService.GetScore(frames);
+            Game game = getSpare2(N, first, second, spareIndex);
+            int actualScore = scoreService.GetScore(game);
 
             Assert.AreEqual(expected, actualScore);
         }
 
-        IList<Frame> getSpare2LastFull(int f, int s, int t)
+        Game getSpare2LastFull(int f, int s, int t)
         {
-            IList<Frame> frames = getSpare2(FULL_FRAMES_COUNT, f, s, FULL_FRAMES_COUNT - 2);
-            frames[FULL_FRAMES_COUNT - 1].third = t;
-            return frames;
+            Game game = getSpare2(FULL_FRAMES_COUNT, f, s, FULL_FRAMES_COUNT - 2);
+            game.frames[FULL_FRAMES_COUNT - 1].third = t;
+            return game;
         }
 
         [TestMethod]
@@ -170,18 +170,18 @@ namespace BowlingTest
 
             int expected = (FULL_FRAMES_COUNT - 2) * (first + second) + 10 + (10 - second) + 10 + third;
 
-            IList<Frame> frames = getSpare2LastFull(first, second, third);
-            int actualScore = scoreService.GetScore(frames);
+            Game game = getSpare2LastFull(first, second, third);
+            int actualScore = scoreService.GetScore(game);
 
             Assert.AreEqual(expected, actualScore);
         }
 
-        IList<Frame> getStrike1(int N, int f, int s, int strikeIndex)
+        Game getStrike1(int N, int f, int s, int strikeIndex)
         {
-            IList<Frame> frames = getEqualFrames(N, f, s);
-            frames[strikeIndex].first = 10;
-            frames[strikeIndex].second = 0;
-            return frames;
+            Game game = getEqualFrames(N, f, s);
+            game.frames[strikeIndex].first = 10;
+            game.frames[strikeIndex].second = 0;
+            return game;
         }
 
         [TestMethod]
@@ -193,8 +193,8 @@ namespace BowlingTest
 
             int expected = (FULL_FRAMES_COUNT - 1) * (first + second) + 10 + first + second;
 
-            IList<Frame> frames = getStrike1(FULL_FRAMES_COUNT, first, second, strikeIndex);
-            int actualScore = scoreService.GetScore(frames);
+            Game game = getStrike1(FULL_FRAMES_COUNT, first, second, strikeIndex);
+            int actualScore = scoreService.GetScore(game);
 
             Assert.AreEqual(expected, actualScore);
         }
@@ -209,8 +209,8 @@ namespace BowlingTest
 
             int expected = (N - 1) * (first + second) + 10 + first + second;
 
-            IList<Frame> frames = getStrike1(N, first, second, strikeIndex);
-            int actualScore = scoreService.GetScore(frames);
+            Game game = getStrike1(N, first, second, strikeIndex);
+            int actualScore = scoreService.GetScore(game);
 
             Assert.AreEqual(expected, actualScore);
         }
@@ -227,18 +227,18 @@ namespace BowlingTest
 
             int expected = (N - 1) * (first + second);
 
-            IList<Frame> frames = getStrike1(N, first, second, strikeIndex);
-            int actualScore = scoreService.GetScore(frames);
+            Game game = getStrike1(N, first, second, strikeIndex);
+            int actualScore = scoreService.GetScore(game);
 
             Assert.AreEqual(expected, actualScore);
         }
 
-        IList<Frame> getStrike1LastFull(int f, int s, int t)
+        Game getStrike1LastFull(int f, int s, int t)
         {
-            IList<Frame> frames = getEqualFrames(FULL_FRAMES_COUNT, f, s);
-            frames[FULL_FRAMES_COUNT-1].first = 10;
-            frames[FULL_FRAMES_COUNT-1].third = t;
-            return frames;
+            Game game = getEqualFrames(FULL_FRAMES_COUNT, f, s);
+            game.frames[FULL_FRAMES_COUNT - 1].first = 10;
+            game.frames[FULL_FRAMES_COUNT - 1].third = t;
+            return game;
         }
 
         [TestMethod]
@@ -250,20 +250,20 @@ namespace BowlingTest
 
             int expected = (FULL_FRAMES_COUNT - 1) * (first + second) + 10 + second + third;
 
-            IList<Frame> frames = getStrike1LastFull(first, second, third);
-            int actualScore = scoreService.GetScore(frames);
+            Game game = getStrike1LastFull(first, second, third);
+            int actualScore = scoreService.GetScore(game);
 
             Assert.AreEqual(expected, actualScore);
         }
 
-        IList<Frame> getStrike2(int N, int f, int s, int strikeIndex)
+        Game getStrike2(int N, int f, int s, int strikeIndex)
         {
-            IList<Frame> frames = getEqualFrames(N, f, s);
-            frames[strikeIndex].first = 10;
-            frames[strikeIndex].second = 0;
-            frames[strikeIndex+1].first = 10;
-            frames[strikeIndex+1].second = 0;
-            return frames;
+            Game game = getEqualFrames(N, f, s);
+            game.frames[strikeIndex].first = 10;
+            game.frames[strikeIndex].second = 0;
+            game.frames[strikeIndex+1].first = 10;
+            game.frames[strikeIndex+1].second = 0;
+            return game;
         }
 
         [TestMethod]
@@ -275,8 +275,8 @@ namespace BowlingTest
 
             int expected = (FULL_FRAMES_COUNT - 2) * (first + second) + 10 + 10 + first + 10 + first + second;
 
-            IList<Frame> frames = getStrike2(FULL_FRAMES_COUNT, first, second, strikeIndex);
-            int actualScore = scoreService.GetScore(frames);
+            Game game = getStrike2(FULL_FRAMES_COUNT, first, second, strikeIndex);
+            int actualScore = scoreService.GetScore(game);
 
             Assert.AreEqual(expected, actualScore);
         }
@@ -291,21 +291,21 @@ namespace BowlingTest
 
             int expected = (N - 2) * (first + second);
 
-            IList<Frame> frames = getStrike2(N, first, second, strikeIndex);
-            int actualScore = scoreService.GetScore(frames);
+            Game game = getStrike2(N, first, second, strikeIndex);
+            int actualScore = scoreService.GetScore(game);
 
             Assert.AreEqual(expected, actualScore);
         }
 
-        IList<Frame> getStrike2LastFull(int f, int s, int t)
+        Game getStrike2LastFull(int f, int s, int t)
         {
-            IList<Frame> frames = getEqualFrames(FULL_FRAMES_COUNT, f, s);
-            frames[FULL_FRAMES_COUNT-2].first = 10;
-            frames[FULL_FRAMES_COUNT - 2].second = 0;
-            frames[FULL_FRAMES_COUNT - 1].first = 10;
-            frames[FULL_FRAMES_COUNT - 1].second = s;
-            frames[FULL_FRAMES_COUNT - 1].third = t;
-            return frames;
+            Game game = getEqualFrames(FULL_FRAMES_COUNT, f, s);
+            game.frames[FULL_FRAMES_COUNT-2].first = 10;
+            game.frames[FULL_FRAMES_COUNT - 2].second = 0;
+            game.frames[FULL_FRAMES_COUNT - 1].first = 10;
+            game.frames[FULL_FRAMES_COUNT - 1].second = s;
+            game.frames[FULL_FRAMES_COUNT - 1].third = t;
+            return game;
         }
 
         [TestMethod]
@@ -317,18 +317,18 @@ namespace BowlingTest
 
             int expected = (FULL_FRAMES_COUNT - 2) * (first + second) + 10 + 10 + second + 10 + second + third;
 
-            IList<Frame> frames = getStrike2LastFull(first, second, third);
-            int actualScore = scoreService.GetScore(frames);
+            Game game = getStrike2LastFull(first, second, third);
+            int actualScore = scoreService.GetScore(game);
 
             Assert.AreEqual(expected, actualScore);
         }
 
-        IList<Frame> getPerfectGame()
+        Game getPerfectGame()
         {
-            IList<Frame> frames = getEqualFrames(FULL_FRAMES_COUNT, 10, 0);
-            frames[FULL_FRAMES_COUNT - 1].second = 10;
-            frames[FULL_FRAMES_COUNT - 1].third = 10;
-            return frames;
+            Game game = getEqualFrames(FULL_FRAMES_COUNT, 10, 0);
+            game.frames[FULL_FRAMES_COUNT - 1].second = 10;
+            game.frames[FULL_FRAMES_COUNT - 1].third = 10;
+            return game;
         }
 
         [TestMethod]
@@ -336,8 +336,8 @@ namespace BowlingTest
         {
             int expected = 300;
 
-            IList<Frame> frames = getPerfectGame();
-            int actualScore = scoreService.GetScore(frames);
+            Game game = getPerfectGame();
+            int actualScore = scoreService.GetScore(game);
 
             Assert.AreEqual(expected, actualScore);
         }
