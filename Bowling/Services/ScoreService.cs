@@ -8,40 +8,45 @@ namespace Bowling.Services
 {
     public class ScoreService
     {
-        public int GetScore(IList<Frame> frames) 
+        public int GetScore(Game game) 
         {
-            bool isGameFinished = frames.Count == GameSettings.MAX_FRAMES_COUNT;
             int totalScore = 0;
-            for (int i = 0; i < frames.Count; i++) 
+            if (game != null && game.frames != null)
             {
-                bool isLast = i == frames.Count - 1;
-
-                if (frames[i].IsStrike()) 
+                bool isGameFinished = game.frames.Count == GameSettings.MAX_FRAMES_COUNT;
+                for (int i = 0; i < game.frames.Count; i++)
                 {
-                    bool isPreLast = i == frames.Count - 2;
-                    
-                    int nextRoll = isLast ? (isGameFinished ? frames[i].second : -1) : frames[i + 1].first;
+                    bool isLast = i == game.frames.Count - 1;
 
-                    int nextNextRoll = isLast ? (isGameFinished ? frames[i].third : -1) 
-                        : (!frames[i + 1].IsStrike() ? frames[i + 1].second
-                            : !isPreLast 
-                                ? frames[i + 2].first
-                                : (isGameFinished ? frames[i + 1].second : -1));
-                    
-                    if ((nextRoll > -1) && (nextNextRoll > -1)){
-                        totalScore += 10 + nextRoll + nextNextRoll;
-                    }
-                }
-                else if (frames[i].IsSpare()) {
-                    int nextRoll = isLast ? (isGameFinished ? frames[i].third : 0) : frames[i + 1].first;
-                    if (isGameFinished || !isLast)
+                    if (game.frames[i].IsStrike())
                     {
-                        totalScore += 10 + nextRoll;
+                        bool isPreLast = i == game.frames.Count - 2;
+
+                        int nextRoll = isLast ? (isGameFinished ? game.frames[i].second : -1) : game.frames[i + 1].first;
+
+                        int nextNextRoll = isLast ? (isGameFinished ? game.frames[i].third : -1)
+                            : (!game.frames[i + 1].IsStrike() ? game.frames[i + 1].second
+                                : !isPreLast
+                                    ? game.frames[i + 2].first
+                                    : (isGameFinished ? game.frames[i + 1].second : -1));
+
+                        if ((nextRoll > -1) && (nextNextRoll > -1))
+                        {
+                            totalScore += 10 + nextRoll + nextNextRoll;
+                        }
                     }
-                }
-                else
-                {
-                    totalScore += frames[i].first + frames[i].second;
+                    else if (game.frames[i].IsSpare())
+                    {
+                        int nextRoll = isLast ? (isGameFinished ? game.frames[i].third : 0) : game.frames[i + 1].first;
+                        if (isGameFinished || !isLast)
+                        {
+                            totalScore += 10 + nextRoll;
+                        }
+                    }
+                    else
+                    {
+                        totalScore += game.frames[i].first + game.frames[i].second;
+                    }
                 }
             }
             return totalScore;

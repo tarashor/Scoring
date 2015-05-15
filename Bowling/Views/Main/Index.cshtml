@@ -28,7 +28,7 @@
                     <th>First Roll</th>
                     <th>Second Roll</th>
                     <th>Additional Roll</th>
-                    <th></th>
+                    <th>Score of Frame</th>
                 </tr>
             </thead>
             <tbody>
@@ -37,9 +37,10 @@
                     <td>{{frame.first}}</td>
                     <td><span ng-show="scoreCtrl.hasSecondRoll(frame)">{{frame.second}}</span></td>
                     <td><span ng-show="scoreCtrl.hasThirdRoll(frame)">{{frame.third}}</span></td>
-                    <td></td>
+                    <td>{{scoreCtrl.scoreOfFrame(frame)}}</td>
                 </tr>
                 <tr>
+                    <td></td>
                     <td></td>
                     <td></td>
                     <th>Score</th>

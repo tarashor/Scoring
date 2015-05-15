@@ -17,8 +17,6 @@ namespace Bowling.Controllers
             scoreService = new ScoreService();
         }
 
-        //
-        // GET: /Main/
         public ActionResult Index()
         {
             return View();
@@ -30,7 +28,7 @@ namespace Bowling.Controllers
             string message = string.Empty;
             if (ModelState.IsValid)
             {
-                int totalScore = scoreService.GetScore(game.frames);
+                int totalScore = scoreService.GetScore(game);
                 return Json(new { score = totalScore });
             }
             else

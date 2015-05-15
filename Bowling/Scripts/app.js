@@ -27,16 +27,16 @@ app.controller('ScoreController', ['$http', function ($http) {
                   alert(data.message);
               });
         } else {
-            alert("Verify the values ");
+            alert("Verify the score of the frame that you are trying to add.");
         }
     };
 
     score.isStrike = function (frame) {
-        return frame.first === 10;
+        return frame.first === score.PINS_IN_FRAME;
     };
 
     score.isSpare = function (frame) {
-        return (frame.first + frame.second) === 10;
+        return (frame.first + frame.second) === score.PINS_IN_FRAME && !score.isStrike(frame);
     };
 
     score.canRollSecond = function () {
@@ -70,17 +70,47 @@ app.controller('ScoreController', ['$http', function ($http) {
             return { first: score.newFrame.first, second: score.newFrame.second };
     };
 
-    score.validateNewFrame = function () {
-        if (!score.canRollThird()) {
-            return (score.newFrame.first + score.newFrame.second <= score.PINS_IN_FRAME) && (score.newFrame.third === 0);
+    //it is for this requirement "When a resulting score is returned it should be displayed somewhere on the current page along with the result for each round played. "
+    score.scoreOfFrame = function (frame) {
+        var res = '';
+        if (score.hasThirdRoll(frame)) {
+            res = frame.first + frame.second + frame.third;
         }
-        else {
-            if (score.isSpare(score.newFrame)) {
-                return (score.newFrame.first + score.newFrame.second <= score.PINS_IN_FRAME) && (score.newFrame.third <= score.PINS_IN_FRAME);
-            } else if (score.isStrike(score.newFrame)) {
-                return (score.newFrame.first <= score.PINS_IN_FRAME) && (score.newFrame.second <= score.PINS_IN_FRAME) && (score.newFrame.third <= score.PINS_IN_FRAME);
+        else
+        {
+            if (!score.isSpare(frame) && !score.isStrike(frame)) {
+                res = frame.first + frame.second;
             }
+            else {
+                var index = score.frames.indexOf(frame);
+                if (index < score.frames.length - 1) {
+                    var nextFrame = score.frames[index + 1]
+                    if (score.isSpare(frame)) {
+                        res = score.PINS_IN_FRAME + nextFrame.first;
+                    } else if (score.isStrike(frame)) {
+                        if (score.isStrike(nextFrame)) {
+                            if (index < score.frames.length - 2) {
+                                var nextNextFrame = score.frames[index + 2]
+                                res = score.PINS_IN_FRAME + nextFrame.first + nextNextFrame.first;
+                            }
+                        }
+                        else {
+                            res = score.PINS_IN_FRAME + nextFrame.first + nextFrame.second;
+                        }
+                    }
+                }
+            }
+            
         }
+        return res;
+    };
+
+    score.validateNewFrame = function () {
+        var isValid = (score.newFrame.first >= 0) && (score.newFrame.first <= score.PINS_IN_FRAME) && (score.newFrame.first >= 0) && (score.newFrame.second <= score.PINS_IN_FRAME)&&(score.newFrame.second>= 0) && (score.newFrame.third<= score.PINS_IN_FRAME);
+        if (!score.canRollThird()) {
+            isValid = isValid && (score.newFrame.first + score.newFrame.second <= score.PINS_IN_FRAME) && (score.newFrame.third === 0);
+        }
+        return isValid;
     };
 
 }]);

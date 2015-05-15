@@ -55,7 +55,7 @@ namespace Bowling.Models.Validation
 
         private bool isFrameRollsValid(Frame frame, bool isLastOfFull)
         {
-            bool isValid = false;
+            bool isValid = true;
 
             if (!isLastOfFull||(!frame.IsSpare() && !frame.IsStrike()))
             {
